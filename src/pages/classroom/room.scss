@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.room-container {
+  display: flex;
+  flex: 1;
+}
+
+.classroom {
+  .room-container {
+    display: flex;
+    flex: 1;
+
+    .whiteboard {
+      flex: 1;
+    }
+    .video-board {
+      user-select: none;
+      position: absolute;
+      bottom: 50px;
+      left: 10px;
+      z-index: 3;
+    }
+    .live-board {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      border-left: 1px solid #DBE2E5;
+      max-width: 281px;
+      box-sizing: border-box;
+      height: 100%;
+      .users-board {
+        height: 100%;
+        background-color: #FFFFFF;
+        box-sizing: border-box;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .chat-board {
+        height: 100px;
+        background-color: #FFFFFF;
+        box-sizing: border-box;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+
+
+    }
+  }
+}

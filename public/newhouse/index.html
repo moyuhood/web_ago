@@ -1,0 +1,69 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=Edge，chrome=1"><meta name=renderer content=webkit><meta http-equiv=X-UA-Compatible content="IE=EDGE"><meta name=format-detection content="telephone=yes"><title>loading</title><script>// var vConsole = new VConsole();
+      // console.log('vConsole', vConsole);
+      (function() {
+        // <!--动态设置像素比-->
+        var isMobile = true; //是否为移动端
+        var refreshRemId;  //定时器id
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+          // 移动端
+          var iScale = 1;
+          iScale = iScale / window.devicePixelRatio;
+          document.write('<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=' + iScale + ',minimum-scale=' + iScale + ',maximum-scale=' + iScale + '">');
+          // <!--动态设置文字大小-->
+          isMobile = true;
+        }else{
+        // pc端
+        // <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0">');
+          isMobile = false;
+        }
+        
+        function setRem() {
+          if(isMobile){
+            var iWidth;
+              if (window.orientation == 180 || window.orientation == 0) {
+                iWidth = document.documentElement.clientWidth;
+              }
+              if (window.orientation == 90 || window.orientation == -90) {
+                iWidth = document.documentElement.clientHeight;
+              }
+            // if (window.self === window.top) {
+            //   var ratio = window.devicePixelRatio + '';
+            // } else {
+            //  var  ratio = window.top.devicePixelRatio + '';
+            // }
+            var dpr = window.devicePixelRatio + '';
+            //     iWidth = iWidth > 1242 ? 1242 : iWidth;
+            if(document.documentElement.clientWidth>document.documentElement.clientHeight){
+              // 1.screenHeight  2.innerHeight 3.clientHeight; 4.outerHeight
+              // iWidth = docuemnt.documentElement.screenHeight;
+              // iWidth = window.screen.width;
+              // console.log('获取clientWidth,clientHeight',document.documentElement.clienWidth,document.documentElement.clientHeight);
+              // console.log('获取outerWidth,outerHeight',window.outerWidth,window.outerHeight);
+              // console.log('获取oscreenWidth,screenHeight',window.screen.width,window.screen.height);
+              // console.log('window.devicePixelRatio',window.devicePixelRatio);
+              iWidth = window.outerHeight*window.devicePixelRatio;
+            }
+            document.getElementsByTagName('html')[0].style.fontSize = iWidth / 37.5 + 'px';
+            document.getElementsByTagName('html')[0].setAttribute('data-dpr', dpr);
+            //  document.getElementsByTagName('html')[0].setAttribute('data-ratio', ratio);
+            // 实际的设计稿像素除以20为rem值
+          }else{
+            var iWidth = document.documentElement.clientWidth;
+            iWidth = iWidth >= 1440 ? iWidth: 1440;
+            document.getElementsByTagName('html')[0].style.fontSize=iWidth / 192 + 'px';
+            document.documentElement.style.fontSize = iWidth/19.2 +'px';
+            //rem与px没有实际的关系，根据情况不同比例不同的，这里说的根据情况，实际上就是自己设定比例
+            //实际的设计稿像素除以10，为元素的rem值
+            //注意，谷歌浏览器最小字体为12px,定义关系的时候，不要小于12px;1rem=100px
+          }
+          //目前的pc端的设计稿的的设计大小是1920*1080，一般情况下 设计稿像素除以100，就是真实rem；缩放的最小比例是1440；
+          //Mobile端的设计稿的设计大小是750*1334， 一般情况下，设计稿像素除以20，就是真实的rem
+          // console.log('当前的页面的字体大小为：',document.getElementsByTagName('html')[0].style.fontSize);
+        }
+        setRem();
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+          clearTimeout(refreshRemId); //防止执行两次
+          refreshRemId = setTimeout(setRem, 100);
+        });
+      })();</script><link href=./static/css/app.68a5c426afa4d1878067e56149aad255.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=./static/js/manifest.3ad1d5771e9b13dbdad2.js></script><script type=text/javascript src=./static/js/vendor.219b7dac9ccc887d297c.js></script><script type=text/javascript src=./static/js/app.99996de93d55bafc0e89.js></script></body><script type=text/javascript src=https://res.wx.qq.com/open/js/jweixin-1.4.0.js></script><script type=text/javascript src=https://b.bdstatic.com/searchbox/icms/searchbox/js/swan-2.0.18.js></script></html>
